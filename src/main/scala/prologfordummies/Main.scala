@@ -1,51 +1,37 @@
-import prologfordummies.view.{LoginPage, SplashView}
-import scalafx.animation.PauseTransition
-import scalafx.application.JFXApp3
-import scalafx.application.JFXApp3.PrimaryStage
+package prologfordummies
 
+import prologfordummies.view.{LoginPage, SplashView}
+import scalafx.application.JFXApp3
 import scalafx.scene
 import scalafx.scene.Scene
-import scalafx.stage.{Stage, StageStyle}
+import scalafx.scene.layout.Region
+import scalafx.animation.PauseTransition
 import scalafx.util.Duration
 
-object HelloStageDemo extends JFXApp3 {
-  override def start(): Unit = {
+object Main extends JFXApp3 {
 
-    val splashStage = new PrimaryStage {
-      initStyle(StageStyle.Transparent)
+  def setPage(newRoot: Region): Unit = {
+    stage.scene = new Scene {
+      root = newRoot
+    }
+  }
+
+  override def start(): Unit = {
+    stage = new JFXApp3.PrimaryStage {
+      title = "Prolog For Dummies"
+      width = 800
+      height = 600
       scene = new Scene {
-        fill = scalafx.scene.paint.Color.Transparent
         root = SplashView.asParent
       }
     }
 
     val waitTimer = new PauseTransition(Duration(3000)) {
       onFinished = _ => {
-        splashStage.hide()
-        showLoginScreen()
+        setPage(LoginPage.asParent)
+
       }
     }
-
-    splashStage.show()
     waitTimer.play()
   }
-
-  def showLoginScreen(): Unit = {
-    val loginStage = new Stage {
-
-      title = "Login"
-      scene = new Scene {
-        root = LoginPage.asParent
-      }
-    }
-    loginStage.show()
-  }
-
 }
-
-@main def hello(): Unit =
-  val fansiStr: fansi.Str = fansi.Color.Red("This should be a red string")
-  println("Hello world!")
-  println(fansiStr)
-
-def msg = "I was compiled by Scala 3. :)"
