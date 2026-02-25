@@ -1,38 +1,6 @@
 # Sprint Planning 2
 **Periodo:** 12/02/2026 – 22/02/2026  
 
-**Backlog:**  
-
-| ID | Priorità | Task | ISE |
-|----|----------|------|----------------------|
-| 1  | Alta    | Modellazione utente | 3 |
-| 2  | Alta    | Autenticazione utente | 2 |
-| 3  | Alta    | Registrazione utente | 1 |
-| 4  | Alta    | Eliminazione utente | 1 |
-| 5  | Alta    | Modifica utente | 1 |
-| 6  | Alta    | Interfaccia grafica utente (Registrazione) | 4 |
-| 7  | Alta    | Interfaccia grafica utente (Login) | 4 |
-| 8  | Alta    | Interfaccia grafica utente (Modifica ed eliminazione) | 4 |
-| 9  | Alta    | Sistema persistenza utenti | 4 |
-| 10 | Alta    | Modellazione Quiz a risposta multipla | 3 |
-| 11 | Alta    | Modellazione Quiz "Fill-in-the-blank" | 3 |
-| 12 | Alta    | Interfaccia grafica interazione Utente-Quiz | 6 |
-| 13 | Media   | Valutazione risposte | 8 |
-| 14 | Media   | Sistema persistenza Quiz | 4 |
-| 15 | Media   | Modellazione Level | 3 |
-| 16 | Media   | Sistema persistenza Level | 4 |
-| 17 | Media   | Interfaccia grafica percorso didattico | 4 |
-| 18 | Media   | Sistema persistenza progressi Utente | 6 |
-| 19 | Media   | Testing logica applicativa | 8 |
-| 20 | Media   | Dashboard progressi utente | 5 |
-| 21 | Media   | Contenuti teorici livelli | 5 |
-| 22 | Media   | Contenuti Quiz Domande e Risposte | 5 |
-| 23 | Bassa   | Rifinitura UX | 5 |
-| 24 | Bassa   | Modalità Survival | 15 |
-| 25 | Bassa   | Playground Prolog | 20 |
-
----
-
 ## Sprint Goal
 Completare l’interfaccia di registrazione, introdurre la persistenza locale per gli utenti e abilitare il cambio scene dinamico. Preparare il terreno per l’inserimento dei primi quiz.
 
