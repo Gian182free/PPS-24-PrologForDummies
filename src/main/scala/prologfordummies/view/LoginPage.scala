@@ -1,9 +1,9 @@
 package prologfordummies.view
 
+import prologfordummies.view.UIComponents.{logoView, styledButton}
 import scalafx.geometry.{Insets, Pos}
-import scalafx.scene.control.{Button, Label, TextField}
-import scalafx.scene.image.{Image, ImageView}
-import scalafx.scene.layout.{ColumnConstraints, GridPane, Priority, VBox, Region}
+import scalafx.scene.control.{Label, TextField}
+import scalafx.scene.layout.{ColumnConstraints, GridPane, Priority, Region, VBox}
 import scalafx.scene.text.Font
 import scalafx.scene.control.Separator
 import scalafx.geometry.Orientation
@@ -17,12 +17,7 @@ object LoginPage {
     padding = Insets(20)
     style = "-fx-background-color: #f4f4f4;"
 
-    val logoView = new ImageView {
-        image = new Image(getClass.getResourceAsStream("/logo_pfd.png"), 400, 0, true, true)
-        preserveRatio = true
-        fitWidth = 300
-        smooth = true
-    }
+    val logo = logoView(myFitWidth = 250)
 
     val loginCard = new GridPane {
       alignment = Pos.Center
@@ -49,15 +44,13 @@ object LoginPage {
         promptText = "Inserisci username"
       }
 
-      val loginBtn = new Button("Accedi") {
-        maxWidth = Double.MaxValue
-        style = """
-            -fx-background-color: #4a90e2;
-            -fx-text-fill: white;
-            -fx-font-weight: bold;
-            -fx-cursor: hand;
-        """
-      }
+      val loginBtn = styledButton(
+        text = "Accedi",
+        bgColor = "#4a90e2",
+        textColor = "white",
+        println(s"Login tentato per: ${userField.text.value}")
+      )
+      
 
       val separator = new Separator:
         orientation = Orientation.Horizontal
@@ -65,23 +58,16 @@ object LoginPage {
 
       val registrationLabel = new Label("Nuovo Utente?")
 
-      val registerBtn = new Button("Registrati") {
-        maxWidth = Double.MaxValue
-        style = """
-              -fx-background-color: #e0e0e0;
-              -fx-text-fill: #333;
-              -fx-border-color: #999;
-              -fx-font-weight: bold;
-              -fx-cursor: hand;
-              """
-        onAction = _ => {
-          prologfordummies.Main.setPage(RegistrationPage.asParent)
-        }
-      }
+      val registerBtn =styledButton(
+        text = "Registrati",
+        bgColor = "#e0e0e0",
+        textColor = "#333",
+        prologfordummies.Main.setPage(RegistrationPage.asParent)
+      )
 
-      add(logoView, 0, 0)
-      GridPane.setHalignment(logoView, scalafx.geometry.HPos.Center)
-      GridPane.setMargin(logoView, Insets(0, 0, 20, 0))
+      add(logo, 0, 0)
+      GridPane.setHalignment(logo, scalafx.geometry.HPos.Center)
+      GridPane.setMargin(logo, Insets(0, 0, 20, 0))
 
       add(header, 0, 1, 2, 1)
       GridPane.setHalignment(header, scalafx.geometry.HPos.Center)
@@ -92,9 +78,6 @@ object LoginPage {
       add(registrationLabel, 0, 6)
       GridPane.setHalignment(registrationLabel, scalafx.geometry.HPos.Center)
       add(registerBtn, 0, 7)
-      
-
-      loginBtn.onAction = _ => println(s"Login tentato per: ${userField.text.value}")
     }
 
     loginCard.maxWidthProperty().bind(width * 0.8)

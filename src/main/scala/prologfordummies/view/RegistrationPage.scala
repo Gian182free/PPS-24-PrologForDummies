@@ -1,13 +1,12 @@
 package prologfordummies.view
 
-import scalafx.Includes._
 import scalafx.geometry.{Insets, Pos}
-import scalafx.scene.control.{Button, Label, TextField}
-import scalafx.scene.image.{Image, ImageView}
-import scalafx.scene.layout._
+import scalafx.scene.control.{Label, TextField}
+import scalafx.scene.layout.*
 import scalafx.scene.text.Font
 import prologfordummies.controller.RegistrationController
 import prologfordummies.Main
+import prologfordummies.view.UIComponents.{logoView, styledButton}
 import scalafx.animation.PauseTransition
 
 object RegistrationPage {
@@ -19,27 +18,16 @@ object RegistrationPage {
 
     val backBtnContainer = new HBox {
       alignment = Pos.TopLeft
-      children = new Button("←") {
-        style = """
-            -fx-background-color: white;
-            -fx-border-color: #333;
-            -fx-border-radius: 5;
-            -fx-font-size: 20;
-            -fx-cursor: hand;
-          """
-          onAction = handle {
-            prologfordummies.Main.setPage(LoginPage.asParent)
-          }
-      }
+      children = styledButton(
+        text = "←",
+        bgColor = "#white",
+        textColor = "#333",
+        prologfordummies.Main.setPage(LoginPage.asParent)
+      )
     }
 
-    val logoView = new ImageView {
-        image = new Image(getClass.getResourceAsStream("/logo_pfd.png"), 400, 0, true, true)
-        preserveRatio = true
-        fitWidth = 300
-        smooth = true
-    }
-
+    val logo = logoView(myFitWidth = 250)
+    
     val registrationCard = new GridPane {
       alignment = Pos.Center
       hgap = 10
@@ -65,16 +53,11 @@ object RegistrationPage {
         visible = false
       }
 
-      val registerBtn = new Button("Registrati") {
-        maxWidth = Double.MaxValue
-        style = """
-              -fx-background-color: #e0e0e0;
-              -fx-text-fill: #333;
-              -fx-border-color: #999;
-              -fx-font-weight: bold;
-              -fx-cursor: hand;
-            """
-        onAction = _ =>
+      val registerBtn =styledButton(
+        text = "Registrati",
+        bgColor = "#e0e0e0",
+        textColor = "#333",
+        {
           val username = userField.text.value.trim
 
           if username == "User" then
@@ -84,6 +67,7 @@ object RegistrationPage {
 
           println(s"Tentativo registrazione: $username")
         }
+      )
 
       add(userLabel, 0, 0)
       add(userField, 1, 0)
@@ -120,6 +104,6 @@ object RegistrationPage {
 
     registrationCard.maxWidthProperty().bind(width * 0.8)
 
-    children = Seq(backBtnContainer, logoView, registrationCard)
+    children = Seq(backBtnContainer, logo, registrationCard)
   }
 }

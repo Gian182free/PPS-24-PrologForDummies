@@ -1,8 +1,8 @@
 package prologfordummies.view
 
 import scalafx.geometry.Pos
-import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.layout.{Region, VBox}
+import UIComponents._
 
 object SplashView {
   def asParent: Region = new VBox {
@@ -13,12 +13,8 @@ object SplashView {
     style = "-fx-background-color: white; -fx-background-radius: 20;"
 
     children = Seq(
-      new ImageView {
-        image = new Image(getClass.getResourceAsStream("/logo_pfd.png"))
-        preserveRatio = true
-        fitWidth = 250
-        smooth = true
-      }
+
+      logoView(myFitWidth = 250)
     )
   }
 }
