@@ -2,7 +2,7 @@ package prologfordummies.view
 
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, TextField}
-import scalafx.scene.layout.*
+import scalafx.scene.layout._
 import scalafx.scene.text.Font
 import prologfordummies.controller.RegistrationController
 import prologfordummies.Main
@@ -12,7 +12,7 @@ import scalafx.animation.PauseTransition
 object RegistrationPage {
   def asParent: Region = new VBox {
     alignment = Pos.Center
-    spacing = 15
+    spacing = 10
     padding = Insets(20)
     style = "-fx-background-color: #f4f4f4;"
 
@@ -27,11 +27,11 @@ object RegistrationPage {
     }
 
     val logo = logoView(myFitWidth = 250)
-    
+
     val registrationCard = new GridPane {
       alignment = Pos.Center
       hgap = 10
-      vgap = 10
+      vgap = 15
       padding = Insets(25)
       style = """
             -fx-background-color: white;
