@@ -1,15 +1,13 @@
 package prologfordummies.view
 
 import prologfordummies.view.UIComponents.{logoView, styledButton}
-import scalafx.geometry.{Insets, Pos}
-import scalafx.scene.control.{Label, TextField}
-import scalafx.scene.layout.{ColumnConstraints, GridPane, Priority, Region, VBox}
+import scalafx.geometry.{Insets, Orientation, Pos}
+import scalafx.scene.control.{Label, Separator}
+import scalafx.scene.layout.*
 import scalafx.scene.text.Font
-import scalafx.scene.control.Separator
-import scalafx.geometry.Orientation
 
 
-object LoginPage {
+object MenuPage {
   
   def asParent: Region = new VBox {
     alignment = Pos.Center
@@ -19,7 +17,7 @@ object LoginPage {
 
     val logo = logoView(myFitWidth = 250)
 
-    val loginCard = new GridPane {
+    val menuCard = new GridPane {
       alignment = Pos.Center
       hgap = 10
       vgap = 15
@@ -34,36 +32,42 @@ object LoginPage {
       column1.hgrow = Priority.Always
       columnConstraints.add(column1)
 
-      val header = new Label("Inserisci il tuo account") {
+      val header = new Label("Ciao, getUser(TODO)") {
         font = Font.font("System", 24)
         style = "-fx-font-weight: bold; -fx-text-fill: #333;"
       }
 
-      val userLabel = new Label("Username:")
-      val userField = new TextField {
-        promptText = "Inserisci username"
-      }
-
-      val loginBtn = styledButton(
-        text = "Accedi",
+      val startBtn = styledButton(
+        text = "Vai ai livelli",
         bgColor = "#4a90e2",
         textColor = "white",
-        //println(s"Login tentato per: ${userField.text.value}")
-        prologfordummies.Main.setPage(MenuPage.asParent)
+        println(s"Vai ai livelli")
       )
-      
 
       val separator = new Separator:
         orientation = Orientation.Horizontal
         maxWidth = Double.MaxValue
 
-      val registrationLabel = new Label("Nuovo Utente?")
-
-      val registerBtn =styledButton(
-        text = "Registrati",
+      val statsBtn = styledButton(
+        text = "Statistiche",
         bgColor = "#e0e0e0",
         textColor = "#333",
-        prologfordummies.Main.setPage(RegistrationPage.asParent)
+        //prologfordummies.Main.setPage(RegistrationPage.asParent)
+        println("Statistiche")
+      )
+
+      val optionsBtn = styledButton(
+        text = "Modifica Utente",
+        bgColor = "#e0e0e0",
+        textColor = "#333",
+        prologfordummies.Main.setPage(EditUserPage.asParent)
+      )
+
+      val exitBtn = styledButton(
+        text = "Esci",
+        bgColor = "#e0e0e0",
+        textColor = "#333",
+        prologfordummies.Main.setPage(LoginPage.asParent)
       )
 
       add(logo, 0, 0)
@@ -72,16 +76,15 @@ object LoginPage {
 
       add(header, 0, 1, 2, 1)
       GridPane.setHalignment(header, scalafx.geometry.HPos.Center)
-      add(userLabel, 0, 2)
-      add(userField, 0, 3)
-      add(loginBtn, 0, 4)
-      add(separator, 0, 5)
-      add(registrationLabel, 0, 6)
-      GridPane.setHalignment(registrationLabel, scalafx.geometry.HPos.Center)
-      add(registerBtn, 0, 7)
+      add(startBtn, 0, 2)
+      add(separator, 0, 3)
+      add(statsBtn, 0, 4)
+      add(optionsBtn, 0, 6)
+      add(exitBtn, 0, 8)
+
     }
 
-    loginCard.maxWidthProperty().bind(width * 0.8)
-    children = Seq(loginCard)
+    menuCard.maxWidthProperty().bind(width * 0.8)
+    children = Seq(menuCard)
   }
 }
